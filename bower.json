@@ -1,0 +1,10 @@
+{
+  "name": "packmvp",
+  "description": "MVP de Packandpack",
+  "version": "0.0.1",
+  "license": "copyright",
+  "private": true,
+  "dependencies": {
+    "angular": "^1.5.2"
+  }
+}
