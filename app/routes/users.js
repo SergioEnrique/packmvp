@@ -7,16 +7,23 @@ exports.list = function (req, res) {
 }
 
 exports.create = function (req, res) {
-	var user = new User()
 
-	user.name = req.body.name
-	user.password = req.body.password
+	if (req.body.name == '')
+		res.send({success: false, message: 'No se especificó ningún nombre'})
+	else if (req.body.password == '')
+		res.send({success: false, message: 'No se especificó ningúna contraseña'})
+	else{
+		var user = new User()
 
-	user.save(function (err, user) {
-		if(err) res.send(err)
+		user.name = req.body.name
+		user.password = req.body.password
 
-		res.json({success: true, message: 'User created.'})
-	})
+		user.save(function (err, user) {
+			if(err) res.send(err)
+
+			res.json({success: true, message: 'User created.'})
+		})
+	}
 }
 
 exports.delall = function (req, res) {

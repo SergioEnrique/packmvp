@@ -5,6 +5,7 @@
   "license": "copyright",
   "private": true,
   "dependencies": {
-    "angular": "^1.5.2"
+    "angular": "^1.5.2",
+    "angular-ui-router": "ui-router#^0.2.18"
   }
 }
