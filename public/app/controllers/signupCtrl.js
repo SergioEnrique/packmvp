@@ -15,7 +15,10 @@ function (                  $scope,   $state,   userService) {
 	$scope.pass = ''
 
 	$scope.registrar = function (name, pass) {
-		userService.registrarUsuario(name, pass)
+		userService.registrarUsuario(name, pass, function () {
+			$scope.name = ''
+			$scope.pass = ''
+		})
 	}
 
 }])

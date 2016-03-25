@@ -15,7 +15,7 @@ module.exports = function (req, res) {
 			if (user.password != req.body.password)
 				res.json({success: false, message: 'Authentication failed. Wrong password.'})
 			else{
-				var token = jwt.sign(user, config.secret, {
+				var token = jwt.sign({name: user.name}, config.secret, {
 					expiresInMinutes: 1440
 				})
 
