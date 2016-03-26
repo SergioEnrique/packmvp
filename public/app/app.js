@@ -11,21 +11,11 @@ angular.module('packmvp', [
 	apiUrl: 'http://localhost:3000/api'
 })
 
-.config(['$httpProvider', 'jwtInterceptorProvider',
-function ($httpProvider,   jwtInterceptorProvider) {
-	jwtInterceptorProvider.tokenGetter = ['userService', function(userService) {
-		return userService.getToken()
-	}];
-
-	$httpProvider.interceptors.push('jwtInterceptor')
-}])
-
 .config(['$authProvider', function($authProvider) {
 
-    // Optional: For client-side use (Implicit Grant), set responseType to 'token'
     $authProvider.facebook({
+    	url: '/api/auth/facebook',
         clientId: '1735934219967520'
-        // responseType: 'token'
     })
 
 }])

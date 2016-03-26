@@ -2,13 +2,28 @@ var express = require('express');
 var router = express.Router();
 
 var users = require('./routes/users')
+var authentication = require('./authentication')
+var authMiddleware = require('./authMiddleware')
+
+var User = require('./models/user')
 
 // Rutas sin middleware de autenticación
 router.post('/users', users.create)
-router.post('/auth', require('./routes/auth'))
 
 // Middleware de autenticación
-router.use(require('./auth_middleware'))
+router.use('/auth/facebook', authentication)
+
+/*
+ |--------------------------------------------------------------------------
+ | GET /api/me
+ |--------------------------------------------------------------------------
+ */
+
+router.get('/me', function(req, res) {
+	User.findById(req.user, function(err, user) {
+		res.send(user)
+	})
+})
 
 // Rutas API
 router.get('/users', users.list)

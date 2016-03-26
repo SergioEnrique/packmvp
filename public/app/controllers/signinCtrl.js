@@ -1,4 +1,4 @@
-angular.module('packmvp.signin', ['ui.router', 'packmvp.userservice'])
+angular.module('packmvp.signin', ['ui.router', 'satellizer', 'packmvp.userservice'])
 
 .config(['$stateProvider', function ($stateProvider)	 {
 	$stateProvider.state('login', {
@@ -11,14 +11,9 @@ angular.module('packmvp.signin', ['ui.router', 'packmvp.userservice'])
 .controller('signinCtrl', ['$scope', '$auth', '$state', 'userService',
 function (                  $scope,   $auth,   $state,   userService) {
 
-	$scope.name = ''
-	$scope.pass = ''
-
-	$scope.signin = function (name, pass) {
-		userService.signIn(name, pass, function () {
-			console.log('Sesión correcta')
-		})
-	}
+	$scope.isAuthenticated = function() {
+		return $auth.isAuthenticated();
+	};
 
 	$scope.authenticate = function(provider) {
         $auth.authenticate(provider)
